@@ -1,0 +1,65 @@
+<div class="registerWrapper">
+  <app-heading></app-heading>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-10 mx-auto">
+        <div class="card">
+          <div class="card-block">
+            <h1 class="card-title text-center">Register</h1>
+            <form [formGroup]="registerForm" novalidate>
+              <!-- username input -->
+              <app-form-group
+                [data$]="formGroupData$"
+                [errMsg]="controlNameErrs.username"
+                formControlName="username"
+                ngDefaultControl
+                (appBlurEvent)="handleBlurEvent($event)"
+              >
+              </app-form-group>
+
+              <!-- email input -->
+              <app-form-group
+                [data$]="formGroupData$"
+                [errMsg]="controlNameErrs.email"
+                formControlName="email"
+                ngDefaultControl
+                (appBlurEvent)="handleBlurEvent($event)"
+              >
+              </app-form-group>
+
+              <!-- password group -->
+              <div formGroupName="passwordGroup">
+                <!-- password input -->
+                <app-form-group
+                  [data$]="formGroupData$"
+                  [errMsg]="controlNameErrs.password"
+                  formControlName="password"
+                  ngDefaultControl
+                  (appBlurEvent)="handleBlurEvent($event)"
+                >
+                </app-form-group>
+                <!-- confirm password -->
+                <app-form-group
+                  [data$]="formGroupData$"
+                  [errMsg]="controlNameErrs.confirmPassword"
+                  formControlName="confirmPassword"
+                  ngDefaultControl
+                  (appBlurEvent)="handleBlurEvent($event)"
+                >
+                </app-form-group>
+              </div>
+              <div class="spacer20"></div>
+              <button
+                class="btn btn-outline-dark btn-block btn-sm submitBtn"
+                type="submit"
+                [disabled]="!registerForm.valid"
+              >
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

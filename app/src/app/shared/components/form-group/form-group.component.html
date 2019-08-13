@@ -1,0 +1,33 @@
+<div class="form-group" *ngIf="data$ | async as data">
+  <label>
+    <small>{{ data[key]["label"] }}</small>
+  </label>
+
+  <small *ngIf="data[key]['first']" class="d-block pr-3 float-right">
+    <strong>* = required fields</strong>
+  </small>
+
+  <input
+    *ngIf="data[key]['type'] !== 'textarea'"
+    class="form-control"
+    type="{{ data[key]['type'] }}"
+    name="{{ data[key]['name'] }}"
+    placeholder="{{ data[key]['placeholder'] }}"
+    [class.is-invalid]="errMsg"
+  />
+
+  <textarea
+    *ngIf="data[key]['type'] === 'textarea'"
+    class="form-control"
+    name="{{ data[key]['name'] }}"
+    placeholder="{{ data[key]['placeholder'] }}"
+    cols="30"
+    rows="10"
+  ></textarea>
+
+  <small class="form-text text-muted">
+    {{ data[key]["info"] }}
+  </small>
+
+  <div class="invalid-feedback">{{ errMsg }}</div>
+</div>

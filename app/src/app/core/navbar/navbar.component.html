@@ -1,0 +1,34 @@
+<div class="navbar navbar-expand-md navbar-light bg-dark fixed-top">
+  <!-- brand -->
+  <a class="navbar-brand cursorPointer">
+    <img src="/assets/img/jLogo.png" alt="J" class="logo" />
+    <!-- large screen -->
+    <span [class]="largeScreen">
+      Around the World
+    </span>
+    <!-- small screen -->
+    <span [class]="smallScreen">ATW</span>
+  </a>
+
+  <!-- responsive btn -->
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#mobile"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="mobile">
+    <!-- left links -->
+    <ul class="navbar-nav mr-auto"></ul>
+
+    <!-- right links -->
+    <ul class="navbar-nav ml-auto">
+      <!-- logged in links -->
+
+      <!-- logged out links -->
+    </ul>
+  </div>
+</div>
