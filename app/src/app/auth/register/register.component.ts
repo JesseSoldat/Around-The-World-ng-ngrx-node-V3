@@ -9,12 +9,16 @@ import { Observable, of } from "rxjs";
 // models
 import { InputGroup } from "../../_models/input-group.model";
 import { ValidationErr } from "../../_models/validation-error.model";
+import { HttpRes } from "../../_models/http-res.model";
+import { Auth } from "../../_models/auth.model";
 // data
 import { formGroupData } from "../formGroupData";
 // utils
 import { fieldValidation } from "../../_utils/fieldValidation";
 // validators
 import { confirmPasswordValidator } from "../../_utils/confirmPasswordValidator";
+// services
+import { AuthService } from "../../_services/auth.service";
 
 @Component({
   selector: "app-register",
@@ -32,7 +36,10 @@ export class RegisterComponent implements OnInit {
     confirmPassword: null
   };
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
     this.formGroupData$ = of(formGroupData);
@@ -100,5 +107,20 @@ export class RegisterComponent implements OnInit {
 
     // set the UI object
     this.controlNameErrs[controlName] = fieldValidation(singleControlErr);
+  }
+
+  handleSubmit() {
+    const values = this.registerForm.value;
+    const { password } = values.passwordGroup;
+
+    const auth: Auth = {
+      username: values.username,
+      email: values.email,
+      password
+    };
+
+    this.authService
+      .registerByEmail(auth)
+      .subscribe((res: HttpRes) => {}, err => {});
   }
 }

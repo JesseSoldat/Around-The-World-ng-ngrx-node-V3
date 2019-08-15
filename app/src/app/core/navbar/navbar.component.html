@@ -1,6 +1,6 @@
 <div class="navbar navbar-expand-md navbar-light bg-dark fixed-top">
   <!-- brand -->
-  <a class="navbar-brand cursorPointer">
+  <a class="navbar-brand cursorPointer" (click)="navigateTo()">
     <img src="/assets/img/jLogo.png" alt="J" class="logo" />
     <!-- large screen -->
     <span [class]="largeScreen">
@@ -25,10 +25,16 @@
     <ul class="navbar-nav mr-auto"></ul>
 
     <!-- right links -->
-    <ul class="navbar-nav ml-auto">
+    <ul class="navbar-nav ml-auto" *ngIf="isAuth$ | async; else isNotAuth">
       <!-- logged in links -->
-
-      <!-- logged out links -->
     </ul>
+    <!-- logged out links -->
+    <ng-template #isNotAuth>
+      <ul class="navbar-nav ml-auto">
+        <app-link linkName="Register" icon="fas fa-sign-in-alt mr-2"></app-link>
+
+        <app-link linkName="Login" icon="fas fa-edit mr-2"></app-link>
+      </ul>
+    </ng-template>
   </div>
 </div>
